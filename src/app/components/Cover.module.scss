@@ -1,0 +1,239 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.cover {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, $color-bg 0%, $color-bg-alt 100%);
+  padding: 90px 0 110px;
+  @include flex-center;
+
+  @include respond-max($bp-tablet) {
+    padding: 64px 0 80px;
+  }
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  @include container;
+  @include flex-column-center;
+}
+
+.eyebrow {
+  @include uppercase-spaced(15px, 0.32em);
+  color: $color-text-soft;
+}
+
+.names {
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(44px, 9vw, 86px);
+  line-height: 1.1;
+  color: $color-heading;
+  margin: 20px 0 8px;
+
+  span {
+    font-size: 0.58em;
+    font-style: italic;
+  }
+}
+
+.date {
+  margin: 18px 0 40px;
+  @include flex-column-center;
+}
+
+.weekday {
+  @include uppercase-spaced(16px, 0.3em);
+}
+
+.day {
+  font-family: var(--font-serif), serif;
+  font-size: clamp(78px, 16vw, 150px);
+  font-weight: 400;
+  line-height: 1;
+  color: $color-heading;
+  position: relative;
+  padding: 6px 34px;
+  margin: 6px 0;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 26px;
+    height: 1px;
+    background: $color-line;
+  }
+
+  &::before {
+    left: -8px;
+  }
+  &::after {
+    right: -8px;
+  }
+}
+
+.month {
+  @include uppercase-spaced(16px, 0.3em);
+}
+
+.time {
+  margin-top: 14px;
+  @include uppercase-spaced(13px, 0.22em);
+  color: $color-text-soft;
+}
+
+.photos {
+  display: flex;
+  gap: 26px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.photo {
+  width: 240px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 14px 34px rgba(90, 94, 73, 0.18);
+
+  &:nth-child(2) {
+    margin-top: 34px;
+  }
+
+  @include respond-max($bp-tablet) {
+    width: 150px;
+    height: 210px;
+
+    &:nth-child(2) {
+      margin-top: 22px;
+    }
+  }
+}
+
+.subtitle {
+  max-width: 520px;
+  @include uppercase-spaced(15px, 0.16em);
+  font-weight: 400;
+  line-height: 2;
+}
+
+.envelope {
+  position: relative;
+  width: 300px;
+  max-width: 80vw;
+  margin-top: 48px;
+  @include flex-center;
+}
+
+.envelopeBody {
+  width: 100%;
+  height: auto;
+}
+
+.envelopeFlap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 70%;
+  transform: translateX(-50%);
+  transform-origin: top center;
+  transition: transform 0.8s ease;
+
+  .opened & {
+    transform: translateX(-50%) rotateX(165deg);
+  }
+}
+
+.openBtn {
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @include button-base;
+}
+
+.openedHint {
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @include uppercase-spaced(13px, 0.2em);
+  color: $color-heading;
+  animation: hintIn 0.8s ease;
+}
+
+@keyframes hintIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Декоративные листья
+.leafTopLeft,
+.leafTopRight,
+.leavesLeft,
+.leavesRight {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.leafTopLeft {
+  top: -10px;
+  left: -20px;
+  width: 180px;
+  animation: sway 7s ease-in-out infinite;
+}
+
+.leafTopRight {
+  top: -10px;
+  right: -20px;
+  width: 180px;
+  animation: sway 8s ease-in-out infinite reverse;
+}
+
+.leavesLeft {
+  bottom: 0;
+  left: -30px;
+  width: 220px;
+  animation: sway 9s ease-in-out infinite;
+}
+
+.leavesRight {
+  bottom: 0;
+  right: -30px;
+  width: 220px;
+  animation: sway 9s ease-in-out infinite reverse;
+}
+
+@include respond-max($bp-tablet) {
+  .leafTopLeft,
+  .leafTopRight {
+    width: 100px;
+  }
+  .leavesLeft,
+  .leavesRight {
+    width: 130px;
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  50% {
+    transform: rotate(3deg) translateY(-8px);
+  }
+}

@@ -1,0 +1,148 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.timeline {
+  background: linear-gradient(180deg, $color-bg-alt 0%, $color-bg 100%);
+  padding: 100px 0;
+
+  @include respond-max($bp-tablet) {
+    padding: 70px 0;
+  }
+}
+
+.inner {
+  @include container;
+}
+
+.title {
+  text-align: center;
+  font-family: var(--font-serif), serif;
+  font-size: clamp(38px, 6vw, 58px);
+  font-weight: 400;
+  color: $color-heading;
+  margin-bottom: 64px;
+
+  @include respond-max($bp-tablet) {
+    margin-bottom: 44px;
+  }
+}
+
+.track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+
+  @include respond-max($bp-tablet) {
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.line {
+  position: absolute;
+  top: 46px;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: repeating-linear-gradient(
+    to right,
+    $color-line 0,
+    $color-line 6px,
+    transparent 6px,
+    transparent 12px
+  );
+
+  @include respond-max($bp-tablet) {
+    top: 0;
+    bottom: 0;
+    left: 46px;
+    right: auto;
+    width: 1px;
+    height: auto;
+    background: repeating-linear-gradient(
+      to bottom,
+      $color-line 0,
+      $color-line 6px,
+      transparent 6px,
+      transparent 12px
+    );
+  }
+}
+
+.item {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  @include flex-column-center;
+
+  @include respond-max($bp-tablet) {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 20px;
+    padding: 22px 0;
+  }
+}
+
+.iconWrap {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: $color-bg;
+  border: 1px solid $color-line;
+  margin-bottom: 22px;
+  flex-shrink: 0;
+  @include flex-center;
+
+  img {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+  }
+
+  @include respond-max($bp-tablet) {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 0;
+
+    img {
+      width: 34px;
+      height: 34px;
+    }
+  }
+}
+
+.content {
+  @include flex-column-center;
+
+  @include respond-max($bp-tablet) {
+    align-items: flex-start;
+  }
+}
+
+.time {
+  font-family: var(--font-serif), serif;
+  font-size: 30px;
+  color: $color-heading;
+  margin-bottom: 8px;
+}
+
+.eventTitle {
+  @include uppercase-spaced(14px, 0.16em);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.desc {
+  font-size: 14px;
+  max-width: 220px;
+  color: $color-text-soft;
+  line-height: 1.7;
+
+  @include respond-max($bp-tablet) {
+    max-width: none;
+  }
+}
